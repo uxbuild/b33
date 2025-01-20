@@ -13,7 +13,7 @@
 - DELETE /api/employees/:id = returns nothing; id passed in URL
 - PUT /api/employees/:id = returns updated employee; payload (new employee details)
 
-- ROUTE error handling, returns error object
+- USE error handling middleware, returns error object
 
 ## Department
 - id PRIMARY KEY

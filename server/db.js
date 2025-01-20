@@ -20,12 +20,13 @@ const getDepartments = async () => {
 };
 
 // POST (create) employee
-const addEmployee = async ({name, department_id}) => {
+const addEmployee = async ({ name, department_id }) => {
   const SQL = `
     INSERT INTO Employees(name, department_id)
-    VALUES($1, $2);
+    VALUES($1, $2) RETURNING *;
     `;
-  await client.query(SQL, [name, department_id]);
+  const result = await client.query(SQL, [name, department_id]);
+  return result.rows[0];
 };
 
 // DELETE employee
