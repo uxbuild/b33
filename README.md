@@ -5,7 +5,8 @@
 - GET employees
 - GET departments
 - POST employees (add)
-- DELETE employees
+- PUT employees/:id (update)
+- DELETE employees/:id (delete)
 
 ## API for ACME HR Department
 - GET /api/employees = returns array of employees
