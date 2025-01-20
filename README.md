@@ -1,5 +1,8 @@
 # B30: ACME HR Directory
 
+## Completions
+- seed data
+
 ## API for ACME HR Department
 - GET /api/employees = returns array of employees
 - GET /api/departments = returns array of departments
