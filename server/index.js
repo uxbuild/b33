@@ -63,12 +63,18 @@ const init = async () => {
   // POST route: add employee
   app.post("/api/employees", async (req, res, next) => {
     try {
-      res.status(201).json(
-        await addEmployee({
-          name: req.body.name,
-          department_id: req.body.department_id,
-        })
-      );
+      // add employee
+      const employee = await addEmployee({
+        name: req.body.name,
+        department_id: req.body.department_id,
+      });
+      console.log("new employee: ", employee);
+
+      // return response: 201 status + message
+      res.status(201).json({
+        message: "Employee added.",
+        employee: employee,
+      });
     } catch (error) {
       next(error);
     }
