@@ -80,6 +80,40 @@ const init = async () => {
     }
   });
 
+  // PUT employee (edit)
+  app.put("/api/employee/:id", async (req, res, next) => {
+    try {
+      const employee = await editEmployee({
+        id: req.params.id,
+        name: req.body.name,
+        department_id: req.body.department_id,
+      });
+      console.log("new employee: ", employee);
+
+      // return response: 201 status + message
+      res.status(200).json({
+        message: "Employee updated.",
+        employee: employee,
+      });
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  // DELETE employee
+  app.delete("/api/employees/:id", async (req, res, next) => {
+    try {
+      console.log("employee id", req.params.id);
+      const employee = await deleteEmployee(req.params.id);
+      res.status(200).json({
+        message: "Employee deleted.",
+        employee: employee,
+      });
+    } catch (error) {
+      next(error);
+    }
+  });
+
   // ERROR handling, invoked when there are 4 arguments.
   app.use((err, req, res, next) => {
     res.status(err.status || 500).send({ error: err.message || err });

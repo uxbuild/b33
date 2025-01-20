@@ -30,12 +30,13 @@ const addEmployee = async ({ name, department_id }) => {
 };
 
 // DELETE employee
-const deleteEmployee = async ({ id }) => {
-  console.log(employer_id);
+const deleteEmployee = async (id) => {
+  console.log(id);
   const SQL = `
-        DELETE FROM Employees WHERE id = $1;
+        DELETE FROM Employees WHERE id = $1 RETURNING *
     `;
-  await client.query(SQL, [id]);
+  const result = await client.query(SQL, [id]);
+  return result.rows[0];
 };
 
 // PUT (edit) employee
@@ -43,7 +44,8 @@ const editEmployee = async ({ id, name, department_id }) => {
   const SQL = `
         UPDATE Employees
         SET name = $2, department_id = $3
-        WHERE id = $1;
+        WHERE id = $1 
+        RETURNING *;
     `;
   const response = await client.query(SQL, [id, name, department_id]);
   return response.rows[0];
