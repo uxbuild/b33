@@ -2,6 +2,9 @@
 
 ## Completions
 - seed data
+- GET employees
+- GET departments
+- POST employees (add)
 
 ## API for ACME HR Department
 - GET /api/employees = returns array of employees
