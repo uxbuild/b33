@@ -81,8 +81,16 @@ const init = async () => {
   });
 
   // PUT employee (edit)
-  app.put("/api/employee/:id", async (req, res, next) => {
+  app.put("/api/employees/:id", async (req, res, next) => {
+    console.log('**********');
+    console.log('PUT update employee');
+    console.log('**********');
+    
     try {
+        console.log('PUT employee ID', req.params.id);
+        console.log('PUT employee NAME', req.body.name);
+        console.log('PUT employee DEPARTMENT', req.body.department_id);
+        
       const employee = await editEmployee({
         id: req.params.id,
         name: req.body.name,
